@@ -1,0 +1,46 @@
+{{ define "main" }}
+  <section class="hero__404">
+    <h1 class="title__404">404</h1>
+
+    <div class="eyebrow title__404__eyebrow">Case file missing</div>
+
+    <div class="ornament ornament__404" aria-hidden="true">
+      <span></span>
+      <i></i>
+      <span></span>
+    </div>
+
+    {{- with resources.Get "images/illustrations/the-man-with-the-twisted-lip.jpg" -}}
+      {{- $webp := .Resize "500x webp q80" -}}
+      <figure class="illustration illustration__404">
+        <picture>
+          <source type="image/webp" srcset="{{ $webp.RelPermalink }}" />
+          <img
+            class="image__404 illustration__image"
+            src="{{ $webp.RelPermalink }}"
+            width="{{ .Width }}"
+            height="{{ .Height }}"
+            alt="The Pipe was still between his lips" />
+        </picture>
+      </figure>
+    {{- end -}}
+
+
+    <blockquote class="hero__quote">
+      &ldquo;I have no data yet. It is a capital mistake to theorize before one
+      has data.&rdquo;
+      <cite>
+        &mdash; Sherlock Holmes,
+        <em>The Adventure of the Beryl Coronet</em>
+      </cite>
+    </blockquote>
+
+    <p class="hero__intro hero__intro__404">
+      Whatever page you were pursuing, reader, it appears to have left no trail
+      here. Perhaps it was never filed or perhaps it awaits us elsewhere in the
+      canon.
+    </p>
+
+    <a href="{{ .Site.Home.Permalink }}" class="btn">Return to Baker Street</a>
+  </section>
+{{ end }}

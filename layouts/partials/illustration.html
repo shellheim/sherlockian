@@ -1,0 +1,51 @@
+{{- $page := .page -}}
+{{- $caption := .caption -}}
+{{- $number := .number | default 1 -}}
+{{- $base := "" -}}
+
+{{- if isset $page.Params "chapter" -}}
+  {{- $base = printf "images/illustrations/%s/chapter-%d" ($page.Params.novel | urlize) $page.Params.chapter -}}
+{{- else -}}
+  {{- $base = printf "images/illustrations/%s" ($page.Params.title | urlize) -}}
+{{- end -}}
+
+{{- if gt $number 1 -}}
+  {{- $suffixes := slice "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" -}}
+  {{- $suffix := index $suffixes (sub $number 2) -}}
+  {{- $base = printf "%s-%s" $base $suffix -}}
+{{- end -}}
+
+{{- $img := resources.Get (printf "%s.jpg" $base) -}}
+{{- if not $img -}}
+  {{- $img = resources.Get (printf "%s.png" $base) -}}
+{{- end -}}
+
+{{- with $img -}}
+  {{- $maxW := 1400 -}}
+  {{- $w := $maxW -}}
+  {{- if lt .Width $maxW -}}
+    {{- $w = .Width -}}
+  {{- end -}}
+  {{- $full := .Resize (printf "%dx webp q80" $w) -}}
+  {{- $small := .Resize (printf "%dx webp q80" (int (div $w 2))) -}}
+
+
+  <figure class="illustration">
+    <picture>
+      <source
+        type="image/webp"
+        srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
+        sizes="(max-width: 700px) 100vw, 700px" />
+      <img
+        class="illustration__image"
+        src="{{ $full.RelPermalink }}"
+        width="{{ .Width }}"
+        height="{{ .Height }}"
+        alt="{{ $caption }}"
+        loading="lazy" />
+    </picture>
+    {{- with $caption }}
+      <figcaption class="illustration__caption">“{{ . }}”</figcaption>
+    {{- end }}
+  </figure>
+{{- end -}}

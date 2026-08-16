@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href="{{- .Permalink }}" />
+    <meta
+      name="description"
+      content="{{- .Description | default site.Params.description }}" />
+    <meta property="author" content="Arthur Conan Doyle" />
+    <meta
+      name="theme-color"
+      content="#fefdfb"
+      media="(prefers-color-scheme: light)" />
+    <meta
+      name="theme-color"
+      content="#141a20"
+      media="(prefers-color-scheme: dark)" />
+    <meta property="og:site_name" content="{{- site.Title }}" />
+    <meta property="og:url" content="{{- .Permalink }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    {{- if .IsHome }}
+      {{- with .Site.Params.hero }}
+        <meta property="og:image" content="{{- . | absURL }}" />
+        <meta name="twitter:image" content="{{- . | absURL }}" />
+      {{- end }}
+    {{- end }}
+    {{ if eq .Kind "404" }}
+      <meta name="robots" content="noindex, follow" />
+    {{ end }}
+    {{- block "meta" . }}
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="{{- .Title }}" />
+      <meta
+        property="og:description"
+        content="{{- .Description | default site.Params.description }}" />
+      <meta name="twitter:title" content="{{- .Title }}" />
+      <meta
+        name="twitter:description"
+        content="{{- .Description | default site.Params.description }}" />
+    {{- end }}
+    <title>{{- .Title }}</title>
+    <link rel="canonical" href="{{- .Permalink }}" />
+    <link
+      rel="preload"
+      href="/fonts/Cinzel.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="{{- site.Params.favicon | absURL }}" />
+    <link
+      rel="alternate"
+      type="application/json+oembed"
+      href="{{ "/oembed.json" | absURL }}"
+      title="Sherlockian oEmbed" />
+    {{- with resources.Get "css/main.css" | minify | fingerprint -}}
+    <style>{{ .Content | safeCSS  }}</style>
+    {{- end -}}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content"> Skip to main content </a>
+    <header class="site-header">
+      <a class="site-header__mark" href="{{- "/" | relURL }}"
+        >Sherlock Holmes</a
+      >
+      <nav class="site-header__nav" aria-label="Primary">
+        <a href="{{- "/" | relURL }}#the-canon">The Canon</a>
+      </nav>
+    </header>
+    <main id="main-content">
+      {{- block "main" . }}{{- end }}
+    </main>
+    <footer class="site-footer">
+      <p>Arthur Conan Doyle, 1859–1930</p>
+      <p>The canon is in the public domain.</p>
+    </footer>
+  </body>
+</html>
