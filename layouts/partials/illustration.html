@@ -1,0 +1,35 @@
+{{- $page := .page -}}
+{{- $caption := .caption -}}
+{{- $number := .number | default 1 -}}
+{{- $src := "" -}}
+{{- $base := "" -}}
+
+{{- if isset $page.Params "chapter" -}}
+  {{- $base = printf "/images/illustrations/%s/chapter-%d" ($page.Params.novel | urlize) $page.Params.chapter -}}
+{{- else -}}
+  {{- $base = printf "/images/illustrations/%s" ($page.Params.title | urlize) -}}
+{{- end -}}
+
+{{- if gt $number 1 -}}
+  {{- $suffixes := slice "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" -}}
+  {{- $suffix := index $suffixes (sub $number 2) -}}
+  {{- $base = printf "%s-%s" $base $suffix -}}
+{{- end -}}
+
+{{- if fileExists (printf "static%s.jpg" $base) -}}
+  {{- $src = printf "%s.jpg" $base -}}
+{{- else -}}
+  {{- $src = printf "%s.png" $base -}}
+{{- end -}}
+
+
+<figure class="illustration">
+  <img
+    class="illustration__image"
+    src="{{ $src | absURL }}"
+    alt="{{ $caption }}"
+    loading="lazy" />
+  {{- with $caption }}
+    <figcaption class="illustration__caption">“{{ . }}”</figcaption>
+  {{- end }}
+</figure>

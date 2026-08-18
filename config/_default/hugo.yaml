@@ -1,0 +1,13 @@
+baseURL: 'https://the-sherlock-holmes-canon.vercel.app/'
+locale: 'en-us'
+title: 'The Complete Sherlock Holmes'
+
+params:
+  description: "The complete Sherlock Holmes canon — four novels and fifty-six short stories by Arthur Conan Doyle, read online."
+  hero: "/images/hero.avif"
+  favicon: "/images/favicons/favicon.svg"
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true

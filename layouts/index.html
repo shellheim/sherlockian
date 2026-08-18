@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <section class="hero">
+    <div class="hero__media">
+      <img
+        fetchpriority="high"
+        class="hero__image"
+        src="{{ .Site.Params.hero | relURL }}"
+        alt="" />
+      <div class="hero__scrim"></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__title">The Complete<br />Sherlock Holmes</h1>
+      <span class="eyebrow">Arthur Conan Doyle</span>
+      <div class="ornament" aria-hidden="true">
+        <span></span><i></i><span></span>
+      </div>
+
+      <p class="hero__intro">
+        Four novels and fifty-six short stories, gathered in one library — from
+        A Study in Scarlet to the last case on record.
+      </p>
+      <a class="btn" href="{{ "/" | relURL }}#the-canon">Explore the Canon</a>
+    </div>
+  </section>
+
+  {{ partial "canon.html" . }}
+{{ end }}

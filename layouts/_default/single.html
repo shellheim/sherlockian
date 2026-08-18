@@ -1,0 +1,257 @@
+{{- define "meta" }}
+  {{- $section := .CurrentSection }}
+  {{- $pageTitle := .Title }}
+  {{- if .Params.chapter }}
+    {{- $pageTitle = printf "%s — Chapter %v" $section.Title .Params.chapter }}
+  {{- end }}
+  {{- $excerpt := .Summary | plainify | truncate 160 }}
+  {{- $desc := $excerpt }}
+  {{- if not $excerpt }}
+    {{- if .Params.chapter }}
+      {{- $desc = printf "Read Chapter %v from %s by Arthur Conan Doyle." .Params.chapter $section.Title }}
+    {{- else }}
+      {{- $desc = printf "Read “%s” from %s by Arthur Conan Doyle." .Title $section.Title }}
+    {{- end }}
+  {{- end }}
+  <meta property="og:type" content="article" />
+  <meta property="article:author" content="Arthur Conan Doyle" />
+  <meta property="article:section" content="{{- $section.Title }}" />
+  <meta property="og:title" content="{{- $pageTitle }}" />
+  <meta property="og:description" content="{{- $desc }}" />
+  <meta name="twitter:title" content="{{- $pageTitle }}" />
+  <meta name="twitter:description" content="{{- $desc }}" />
+  <link rel="canonical" href="{{- .Permalink }}" />
+  {{- $ogImage := "" -}}
+
+  {{- if isset .Params "chapter" -}}
+    {{- $base := printf "/images/illustrations/%s/chapter-%d" (.Params.novel | urlize) .Params.chapter -}}
+    {{- if fileExists (printf "static%s.jpg" $base) -}}
+      {{- $ogImage = printf "%s.jpg" $base -}}
+    {{- else -}}
+      {{- $ogImage = printf "%s.png" $base -}}
+    {{- end -}}
+  {{- else if isset .Params "collection" -}}
+    {{- $base := printf "/images/illustrations/%s" (.Params.title | urlize) -}}
+    {{- if fileExists (printf "static%s.jpg" $base) -}}
+      {{- $ogImage = printf "%s.jpg" $base -}}
+    {{- else -}}
+      {{- $ogImage = printf "%s.png" $base -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- with $ogImage }}
+    <meta property="og:image" content="{{ . | absURL }}" />
+    <meta name="twitter:image" content="{{ . | absURL }}" />
+  {{- end }}
+{{- end }}
+{{- define "main" }}
+  {{- $section := .CurrentSection }}
+  {{- $isNovel := eq $section.Params.work_type "novel" }}
+  {{- $siblings := $section.Pages.ByParam "release_order" }}
+  {{- if $isNovel }}
+    {{- $siblings = $section.Pages.ByParam "chapter" }}
+  {{- end }}
+  {{- $prev := "" }}
+  {{- $next := "" }}
+  {{- range $i, $p := $siblings }}
+    {{- if eq $p.RelPermalink $.RelPermalink }}
+      {{- if gt $i 0 }}{{- $prev = index $siblings (sub $i 1) }}{{- end }}
+      {{- if lt $i (sub (len $siblings) 1) }}
+        {{- $next = index $siblings (add $i 1) }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{/* --- cross-work navigation: only matters at the first/last item of a work --- */}}
+  {{- $slug := strings.Trim $section.RelPermalink "/" }}
+  {{- $chronoList := hugo.Data.canon.chronological }}
+  {{- $groupList := hugo.Data.canon.grouped }}
+  {{- $chronoIdx := -1 }}
+  {{- range $i, $s := $chronoList }}
+    {{- if eq $s $slug }}{{- $chronoIdx = $i }}{{- end }}
+  {{- end }}
+  {{- $groupIdx := -1 }}
+  {{- range $i, $s := $groupList }}
+    {{- if eq $s $slug }}{{- $groupIdx = $i }}{{- end }}
+  {{- end }}
+  {{- $prevChronoPage := "" }}
+  {{- if gt $chronoIdx 0 }}
+    {{- $prevChronoPage = site.GetPage (printf "/%s/" (index $chronoList (sub $chronoIdx 1))) }}
+  {{- end }}
+  {{- $nextChronoPage := "" }}
+  {{- if and (ge $chronoIdx 0) (lt $chronoIdx (sub (len $chronoList) 1)) }}
+    {{- $nextChronoPage = site.GetPage (printf "/%s/" (index $chronoList (add $chronoIdx 1))) }}
+  {{- end }}
+  {{- $prevGroupPage := "" }}
+  {{- if gt $groupIdx 0 }}
+    {{- $prevGroupPage = site.GetPage (printf "/%s/" (index $groupList (sub $groupIdx 1))) }}
+  {{- end }}
+  {{- $nextGroupPage := "" }}
+  {{- if and (ge $groupIdx 0) (lt $groupIdx (sub (len $groupList) 1)) }}
+    {{- $nextGroupPage = site.GetPage (printf "/%s/" (index $groupList (add $groupIdx 1))) }}
+  {{- end }}
+  <article class="reading">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <span class="breadcrumb-wrapper">
+        <a href="{{- "/" | relURL }}#the-canon">The Canon</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{- $section.RelPermalink }}">{{- $section.Title }}</a>
+        <span aria-hidden="true">/</span>
+        <a href="{{- .RelPermalink }}">
+          {{- if .Params.chapter }}
+            Chapter
+            {{ .Params.chapter }}
+          {{- else }}
+            {{- .Title }}
+          {{- end }}
+        </a>
+      </span>
+    </nav>
+    <p class="eyebrow reading__meta">
+      {{- $section.Title }} ·
+      {{ .Params.year }}
+    </p>
+    {{- if .Params.chapter }}
+      <h1 class="reading__title">
+        Chapter
+        {{ .Params.chapter }}
+      </h1>
+      <p class="subtitle">{{- .Params.subtitle }}</p>
+    {{- else }}
+      <h1 class="reading__title story">
+        {{- .Title }}
+      </h1>
+    {{- end }}
+    <span class="reading__byline">Arthur Conan Doyle</span>
+    <div class="ornament" aria-hidden="true">
+      <span></span><i></i><span></span>
+    </div>
+    <div class="reading__body">
+      {{- .Content }}
+    </div>
+    <nav class="reading__nav">
+      {{- if $prev }}
+        <span class="navigation-icon">
+          <a href="{{- $prev.RelPermalink }}">
+            {{- readFile "/static/images/icons/arrow.svg"
+              | replaceRE `<svg` `<svg style="rotate: -90deg;"`
+              | safeHTML
+            }}
+            {{- if $isNovel }}
+              Chapter
+              {{ $prev.Params.chapter }}
+            {{- else }}
+              {{- $prev.Title }}
+            {{- end }}
+
+          </a>
+        </span>
+      {{- else }}
+        <span class="navigation-icon">
+          <a
+            id="cross-work-prev"
+            href="{{- if $prevGroupPage }}
+              {{- $prevGroupPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-chrono-href="{{- if $prevChronoPage }}
+              {{- $prevChronoPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-chrono-label="&larr; {{- if $prevChronoPage }}
+              {{- $prevChronoPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }}"
+            data-group-href="{{- if $prevGroupPage }}
+              {{- $prevGroupPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-group-label="&larr; {{- if $prevGroupPage }}
+              {{- $prevGroupPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }}
+            ">
+            {{- readFile "/static/images/icons/arrow.svg"
+              | replaceRE `<svg` `<svg style="rotate: -90deg;"`
+              | safeHTML
+            }}
+            {{- if $prevGroupPage }}
+              {{- $prevGroupPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }}
+          </a>
+        </span>
+      {{- end }}
+      {{- if $next }}
+        <span class="navigation-icon">
+          <a href="{{- $next.RelPermalink }}">
+            {{- if $isNovel }}
+              Chapter
+              {{ $next.Params.chapter }}
+            {{- else }}
+              {{- $next.Title }}
+            {{- end }}
+            {{- readFile "/static/images/icons/arrow.svg"
+              | replaceRE `<svg` `<svg style="rotate: 90deg;"`
+              | safeHTML
+            }}
+          </a>
+        </span>
+      {{- else }}
+        <span class="navigation-icon">
+          <a
+            id="cross-work-next"
+            href="{{- if $nextGroupPage }}
+              {{- $nextGroupPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-chrono-href="{{- if $nextChronoPage }}
+              {{- $nextChronoPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-chrono-label="{{- if $nextChronoPage }}
+              {{- $nextChronoPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }} &rarr;"
+            data-group-href="{{- if $nextGroupPage }}
+              {{- $nextGroupPage.RelPermalink }}
+            {{- else }}
+              {{- $section.RelPermalink }}
+            {{- end }}"
+            data-group-label="{{- if $nextGroupPage }}
+              {{- $nextGroupPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }} &rarr;"
+            >{{- if $nextGroupPage }}
+              {{- $nextGroupPage.Title }}
+            {{- else }}
+              {{- $section.Title }}
+            {{- end }}
+            {{- readFile "/static/images/icons/arrow.svg"
+              | replaceRE `<svg` `<svg style="rotate: 90deg;"`
+              | safeHTML
+            }}
+          </a>
+        </span>
+      {{- end }}
+    </nav>
+  </article>
+  <button class="scroll-top" type="button" aria-label="Scroll to top">
+    {{- readFile "/static/images/icons/arrow.svg"| safeHTML }}
+  </button>
+  {{- with resources.Get "js/scroll-to-top.js" | minify | fingerprint }}
+    <script>{{ .Content | safeJS }}</script>
+  {{- end }}
+  {{- with resources.Get "js/canon-navigation-order.js" | minify | fingerprint }}
+    <script>{{ .Content | safeJS }}</script>
+  {{- end }}
+{{- end }}

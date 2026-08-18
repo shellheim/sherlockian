@@ -1,0 +1,812 @@
+/* ==========================================================================
+Hero tokens are fixed (not theme-swapped): the hero always sits under a
+dark scrim over a photo, so its type needs to stay legible regardless of
+the reader's light/dark mode.
+
+Types
+Cinzel            — display face, used sparingly: wordmark, titles, numerals
+Libre Baskerville — body face, long-form reading, captions (italic)
+========================================================================== */
+
+@font-face {
+  font-family: 'Baskervville';
+  src: url('/fonts/Baskervville.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Baskervville';
+  src: url('/fonts/Baskervville-Italic.woff2') format('woff2');
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  --bg: #fefdfb;
+  --bg-2: #ece0c2;
+  --fg: #232930;
+  --fg-dim: #5b6672;
+  --accent: #2f5d8a;
+  --accent-dim: #aec5d9;
+  --accent-deep: #16324f;
+  --grain: rgba(70, 52, 20, 0.05);
+
+  --hero-fg: #f5eeda;
+  --hero-fg-dim: #c9d5df;
+  --hero-accent: #90c2ea;
+  --hero-rule: rgba(245, 238, 218, 0.38);
+  --hero-btn-bg: #90c2ea;
+  --hero-btn-fg: #12202c;
+
+  --measure: 880px;
+  --gutter: clamp(1.5rem, 5vw, 4rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141a20;
+    --bg-2: #1b232b;
+    --fg: #e9e2cf;
+    --fg-dim: #94a0aa;
+    --accent: #74acdc;
+    --accent-dim: #37495b;
+    --accent-deep: #c3ddf3;
+    --grain: rgba(255, 255, 255, 0.035);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  color: var(--fg);
+  font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  /* subtle paper grain, has two offset dot layers, kept faint on purpose */
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(var(--grain) 0.6px, transparent 0.6px),
+    radial-gradient(var(--grain) 0.6px, transparent 0.6px);
+  background-size: 3px 3px;
+  background-position:
+    0 0,
+    1.5px 1.5px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+a {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: var(--fg);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid var(--accent);
+  outline-offset: 4px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Cinzel', 'Times New Roman', serif;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--fg);
+}
+
+.eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-block: 1.25rem;
+}
+
+.caption {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--fg-dim);
+}
+
+/* -------------------------------------------------------------------- */
+/* Ornament: a rule with a diamond       */
+/* -------------------------------------------------------------------- */
+
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: 100%;
+  margin-block: 1.5rem;
+}
+
+.ornament span {
+  flex: 1;
+  height: 1px;
+  background: var(--accent-dim);
+}
+
+.ornament i {
+  width: 7px;
+  height: 7px;
+  background: var(--accent);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.ornament--center {
+  margin-inline: auto;
+}
+
+.hero .ornament span {
+  background: var(--hero-rule);
+}
+
+.hero .ornament i {
+  background: var(--hero-accent);
+}
+
+/* -------------------------------------------------------------------- */
+/* Site header                                                          */
+/* -------------------------------------------------------------------- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem var(--gutter);
+  border-bottom: 1px solid var(--accent-dim);
+}
+
+.site-header__mark {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.site-header__mark:hover {
+  color: var(--accent);
+}
+
+.site-header__nav a {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg-dim);
+  margin-left: 2rem;
+}
+
+.site-header__nav a:hover,
+.site-header__nav a[aria-current='page'] {
+  color: var(--accent);
+}
+
+/* -------------------------------------------------------------------- */
+/* Hero                                                                  */
+/* -------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  display: block;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(18, 24, 30, 0.35) 0%,
+    rgba(18, 24, 30, 0.58) 55%,
+    rgba(14, 18, 23, 0.95) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding: 0 var(--gutter) clamp(3rem, 8vh, 6rem);
+  max-width: 46rem;
+  animation: rise 0.9s ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero__title {
+  font-size: clamp(2.4rem, 6vw, 4.25rem);
+  color: var(--hero-fg);
+}
+
+.hero .eyebrow {
+  color: var(--hero-accent);
+}
+
+.hero__intro {
+  max-width: 40ch;
+  color: var(--hero-fg-dim);
+  margin: 0 0 2rem;
+}
+
+.btn {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--hero-btn-fg);
+  background: var(--hero-btn-bg);
+  padding: 0.95rem 1.9rem;
+  border: 1px solid var(--hero-btn-bg);
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  text-decoration: none;
+  background: transparent;
+  color: var(--hero-accent);
+  border-color: var(--hero-accent);
+}
+
+/* -------------------------------------------------------------------- */
+/* Ledger is the index of works, shared by home and canon page             */
+/* -------------------------------------------------------------------- */
+
+.ledger {
+  padding: clamp(4rem, 9vh, 6.5rem) var(--gutter);
+  max-width: 62rem;
+  margin-inline: auto;
+}
+
+.ledger__intro {
+  max-width: var(--measure);
+  color: var(--fg-dim);
+  margin: 1rem 0 3rem;
+}
+
+.ledger-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.ledger-controls__label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-dim);
+}
+
+.ledger-controls__select {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.92rem;
+  color: var(--fg);
+  background: var(--bg-2);
+  border: 1px solid var(--accent-dim);
+  padding: 0.45rem 0.75rem;
+  border-radius: 0;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.ledger-controls__select:hover,
+.ledger-controls__select:focus-visible {
+  border-color: var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+.ledger-group {
+  border-top: 1px solid var(--accent-dim);
+  padding: 2rem 0;
+}
+
+.ledger-group:last-child {
+  border-bottom: 1px solid var(--accent-dim);
+}
+
+.ledger-group__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.ledger-group__num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+
+.ledger-group__title {
+  font-size: 1.35rem;
+}
+
+.ledger-group__title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ledger-group__title a:hover,
+.ledger-group__title a:focus-visible {
+  color: var(--accent);
+}
+
+.ledger-group__meta {
+  font-family: 'Libre Baskerville', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  margin-left: auto;
+}
+
+.ledger-group__list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 2.5rem;
+}
+
+.ledger-group__list li {
+  break-inside: avoid;
+  display: flex;
+  gap: 0.7rem;
+  padding: 0.4rem 0;
+  border-bottom: 1px dotted var(--accent-dim);
+}
+
+.ledger-group__list a {
+  text-decoration: none;
+  font-size: 0.98rem;
+}
+
+.ledger-group__list .num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.72rem;
+  color: var(--accent-dim);
+  padding-top: 0.15rem;
+  flex-shrink: 0;
+}
+
+/* -------------------------------------------------------------------- */
+/* Reading page                                                         */
+/* -------------------------------------------------------------------- */
+
+.reading {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) 4rem;
+}
+
+.reading__meta {
+  color: var(--accent);
+}
+
+.reading__title {
+  font-size: clamp(2rem, 4.5vw, 2.9rem);
+  margin: 0.75rem 0.5rem 0.75rem;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 1.5vw, 1.9rem);
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+
+.reading__byline {
+  color: var(--fg-dim);
+  font-style: italic;
+  margin-left: 0.5rem;
+}
+
+.reading__body p {
+  margin: 0 0 1.4rem;
+}
+
+.reading__body p:first-of-type::first-letter {
+  font-family: 'Cinzel', serif;
+  font-size: 4rem;
+  font-weight: 600;
+  color: var(--accent);
+  float: left;
+  line-height: 0.8;
+  padding: 0.1rem 0.5rem 0 0;
+}
+
+.reading__nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--accent-dim);
+  font-family: 'Cinzel', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+}
+
+.reading__nav a {
+  display: flex;
+  justify-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--fg-dim);
+}
+
+.reading__nav a:hover {
+  color: var(--accent);
+}
+
+.scroll-top {
+  position: fixed;
+  right: clamp(1rem, 4vw, 2.5rem);
+  bottom: clamp(3.5rem, 12vw, 6rem);
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--fg-dim);
+  border-radius: 50%;
+  background: var(--bg-2);
+  color: var(--fg-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+  z-index: 20;
+}
+
+.scroll-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-top:hover,
+.scroll-top:focus-visible {
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  outline: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top {
+    transition:
+      opacity 0.001ms linear,
+      visibility 0.001ms linear;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Illustrations                                                        */
+/* -------------------------------------------------------------------- */
+
+.illustration {
+  margin: 2.5rem auto;
+  text-align: center;
+}
+
+.illustration__image {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid var(--accent-dim);
+}
+
+.illustration__caption {
+  margin: 0.8rem auto 0;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.75;
+  color: var(--fg-dim);
+}
+
+@media (max-width: 640px) {
+  .illustration {
+    margin: 2.5rem auto;
+  }
+
+  .illustration__image {
+    max-height: none;
+  }
+
+  .illustration__caption {
+    font-size: 0.85rem;
+    padding-inline: 0.5rem;
+  }
+}
+
+/* -------------------------------------------------------------------- */
+/* Footer                                                                */
+/* -------------------------------------------------------------------- */
+
+.site-footer {
+  padding: 2.5rem var(--gutter);
+  border-top: 1px solid var(--accent-dim);
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0;
+  font-size: 0.82rem;
+  font-style: italic;
+  color: var(--fg-dim);
+}
+
+/* -------------------------------------------------------------------- */
+/* 404                                                                  */
+/* -------------------------------------------------------------------- */
+
+.hero__404 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 var(--gutter) 4rem;
+  text-align: center;
+}
+
+.title__404 {
+  color: var(--accent);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(6rem, 18vw, 14rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 0.85;
+  margin: 2rem 0 0;
+}
+
+.title__404__eyebrow {
+  margin: 1.25rem 0 0;
+  font-size: clamp(0.8rem, 1.5vw, 1.1rem);
+}
+
+.ornament__404 {
+  width: min(28rem, 75vw);
+  margin: 1.25rem auto 2rem;
+}
+
+.illustration__404 {
+  width: min(52rem, 100%);
+  margin: 2rem auto 1.5rem;
+}
+
+.image__404 {
+  max-width: 40%;
+}
+
+.hero__quote {
+  width: min(34rem, 100%);
+  margin: 1.5rem auto 2rem;
+  padding-left: 1.5rem;
+  border-left: 2.5px solid var(--accent-dim);
+  color: var(--fg);
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.65;
+  text-align: left;
+}
+
+.hero__quote cite {
+  display: block;
+  margin-top: 0.7rem;
+  color: var(--fg-dim);
+  font-size: 0.82rem;
+  font-style: normal;
+  line-height: 1.5;
+}
+
+.hero__quote cite em {
+  font-style: italic;
+}
+
+.hero__intro__404 {
+  max-width: min(60ch, 100%);
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+/* -------------------------------------------------------------------- */
+/* 404 responsive                                                       */
+/* -------------------------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .site-header {
+    padding: 0.8rem var(--gutter);
+  }
+
+  .site-header__mark {
+    font-size: 1rem;
+  }
+
+  .site-header__nav a {
+    font-size: 0.7rem;
+    margin-left: 1.2rem;
+  }
+
+  .ledger-group__list {
+    columns: 1;
+  }
+
+  .ledger-group__meta {
+    margin-left: 0;
+  }
+
+  .reading__nav {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .hero__404 {
+    padding-bottom: 3rem;
+  }
+
+  .title__404 {
+    font-size: clamp(5rem, 27vw, 8rem);
+    letter-spacing: 0.02em;
+    margin-top: 1.5rem;
+  }
+
+  .title__404__eyebrow {
+    margin-top: 1rem;
+    letter-spacing: 0.2em;
+  }
+
+  .image__404 {
+    max-width: 75%;
+  }
+
+  .ornament__404 {
+    width: min(24rem, 80vw);
+    margin-block: 1rem 1.5rem;
+  }
+
+  .illustration__404 {
+    margin-block: 1.5rem 1rem;
+  }
+
+  .hero__quote {
+    margin-block: 1rem 1.75rem;
+    padding-left: 1rem;
+    font-size: 0.98rem;
+  }
+
+  .hero__quote cite {
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .site-header__mark {
+    font-size: 1.25rem;
+  }
+
+  .site-header {
+    flex-direction: column;
+  }
+
+  .title__404 {
+    font-size: clamp(6rem, 35vw, 12rem);
+  }
+
+  .title__404__eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+  }
+
+  .ornament__404 {
+    width: 75vw;
+  }
+
+  .hero__quote {
+    font-size: 0.94rem;
+  }
+}
