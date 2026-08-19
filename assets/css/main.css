@@ -500,20 +500,23 @@ h2 {
 /* Reading page                                                         */
 /* -------------------------------------------------------------------- */
 
-.reading,
-.breadcrumb {
+.reading {
   max-width: var(--measure);
   margin: 0 auto;
   padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) 4rem;
-}
-.reading {
   padding-top: 0;
 }
 .breadcrumb {
+  max-width: 62rem;
+  margin: auto;
+  padding: clamp(4rem, 9vh, 6.5rem) var(--gutter);
   padding-bottom: 0;
 }
-.breadcrumb:has(+ .ledger) {
-  padding-left: 0;
+.breadcrumb:has(+ .reading) {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) 4rem;
+  padding-bottom: 0;
 }
 
 .reading__meta {
