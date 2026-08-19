@@ -8,6 +8,14 @@
       name="description"
       content="{{- .Description | default site.Params.description }}" />
     <meta property="author" content="Arthur Conan Doyle" />
+    <meta
+      name="theme-color"
+      content="#fefdfb"
+      media="(prefers-color-scheme: light)" />
+    <meta
+      name="theme-color"
+      content="#141a20"
+      media="(prefers-color-scheme: dark)" />
     <meta property="og:site_name" content="{{- site.Title }}" />
     <meta property="og:url" content="{{- .Permalink }}" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -34,15 +42,20 @@
     <title>{{- .Title }}</title>
     <link rel="canonical" href="{{- .Permalink }}" />
     <link
-      rel="icon"
-      type="image/svg+xml"
-      href="{{- site.Params.favicon | absURL }}" />
-    <link
       rel="preload"
       href="/fonts/Cinzel.woff2"
       as="font"
       type="font/woff2"
       crossorigin />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="{{- site.Params.favicon | absURL }}" />
+    <link
+      rel="alternate"
+      type="application/json+oembed"
+      href="/oembed.json"
+      title="Sherlockian oEmbed" />
     {{- with resources.Get "css/main.css" | minify | fingerprint }}
     <style>{{ .Content | safeCSS  }}</style>
     {{- end }}

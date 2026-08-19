@@ -1,6 +1,6 @@
-baseURL: 'https://the-sherlock-holmes-canon.vercel.app/'
+baseURL: 'https://sherlockian.vercel.app/'
 locale: 'en-us'
-title: 'Sherlockian'
+title: 'Sherlockian | Read The Complete Sherlock Holmes online'
 
 params:
   description: "The complete Sherlock Holmes canon — four novels and fifty-six short stories by Arthur Conan Doyle, read online."
