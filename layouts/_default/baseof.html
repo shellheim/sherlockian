@@ -54,11 +54,11 @@
     <link
       rel="alternate"
       type="application/json+oembed"
-      href="/oembed.json"
+      href="{{ "/oembed.json" | absURL }}"
       title="Sherlockian oEmbed" />
-    {{- with resources.Get "css/main.css" | minify | fingerprint }}
+    {{- with resources.Get "css/main.css" | minify | fingerprint -}}
     <style>{{ .Content | safeCSS  }}</style>
-    {{- end }}
+    {{- end -}}
   </head>
   <body>
     <a class="skip-link" href="#main-content"> Skip to main content </a>

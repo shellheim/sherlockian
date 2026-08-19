@@ -1,5 +1,8 @@
 {
+       "version": "1.0",
+       "type": "link",
        "title": "Sherlockian | Read The Complete Sherlock Holmes online",
+       "author_name": "Arthur Conan Doyle",
        "provider_name": "Sherlockian",
        "provider_url": "https://sherlockian.vercel.app/"
 }
