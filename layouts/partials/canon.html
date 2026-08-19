@@ -1,6 +1,6 @@
 <section class="ledger">
   <p class="eyebrow">The Complete Works</p>
-  <h1 id="the-canon">The Canon</h1>
+  <h2 id="the-canon">The Canon</h2>
   <p class="ledger__intro">
     Sixty tales in all — four novels and fifty-six short stories, set down
     between 1887 and 1927.
@@ -12,25 +12,32 @@
       <option value="chrono">Chronological</option>
       <option value="group">Novels, then Stories</option>
     </select>
+
+    <span
+      id="sort-status"
+      style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;"
+      aria-live="polite"
+      aria-atomic="true">
+    </span>
   </div>
 
   {{ $chronoList := hugo.Data.canon.chronological }}
 
 
-  <div class="ledger-groups" id="ledger-groups">
+  <ol class="ledger-groups" id="ledger-groups">
     {{ range $i, $path := $chronoList }}
       {{ $page := site.GetPage (printf "/%s/" $path) }}
       {{ if $page }}
         {{ $workType := $page.Params.work_type }}
-        <div
+        <li
           class="ledger-group"
           data-type="{{ $workType }}"
           data-chrono="{{ add $i 1 }}">
           <div class="ledger-group__head">
-            <span class="ledger-group__num"></span>
-            <h2 class="ledger-group__title">
+            <span class="ledger-group__num" aria-hidden="true"></span>
+            <h3 class="ledger-group__title">
               <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-            </h2>
+            </h3>
             <span class="ledger-group__meta">
               {{ if eq $workType "novel" }}
                 Novel ·
@@ -41,16 +48,17 @@
               {{ end }}
             </span>
           </div>
-        </div>
+        </li>
       {{ end }}
     {{ end }}
-  </div>
+  </ol>
 </section>
 
 <script>
   (function () {
     const select = document.getElementById('sort-order');
     const container = document.getElementById('ledger-groups');
+    const status = document.getElementById('sort-status');
     if (!select || !container) return;
 
     const STORAGE_KEY = 'canon-sort-order';
@@ -87,6 +95,13 @@
 
     select.addEventListener('change', function () {
       applyOrder(select.value);
+
+      if (status) {
+        status.textContent =
+          select.value === 'group'
+            ? 'Canon reordered by type.'
+            : 'Canon reordered chronologically.';
+      }
       try {
         localStorage.setItem(STORAGE_KEY, select.value);
       } catch (e) {}

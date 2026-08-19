@@ -89,46 +89,54 @@
   {{- if and (ge $groupIdx 0) (lt $groupIdx (sub (len $groupList) 1)) }}
     {{- $nextGroupPage = site.GetPage (printf "/%s/" (index $groupList (add $groupIdx 1))) }}
   {{- end }}
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <span class="breadcrumb-wrapper">
+      <a href="{{- "/" | relURL }}#the-canon">The Canon</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{- $section.RelPermalink }}">{{- $section.Title }}</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{- .RelPermalink }}" aria-current="page">
+        {{- if .Params.chapter }}
+          Chapter
+          {{ .Params.chapter }}
+        {{- else }}
+          {{- .Title }}
+        {{- end }}
+      </a>
+    </span>
+  </nav>
   <article class="reading">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <span class="breadcrumb-wrapper">
-        <a href="{{- "/" | relURL }}#the-canon">The Canon</a>
-        <span aria-hidden="true">/</span>
-        <a href="{{- $section.RelPermalink }}">{{- $section.Title }}</a>
-        <span aria-hidden="true">/</span>
-        <a href="{{- .RelPermalink }}">
-          {{- if .Params.chapter }}
-            Chapter
-            {{ .Params.chapter }}
-          {{- else }}
-            {{- .Title }}
-          {{- end }}
-        </a>
-      </span>
-    </nav>
-    <p class="eyebrow reading__meta">
-      {{- $section.Title }} ·
-      {{ .Params.year }}
-    </p>
-    {{- if .Params.chapter }}
-      <h1 class="reading__title">
-        Chapter
-        {{ .Params.chapter }}
-      </h1>
-      <p class="subtitle">{{- .Params.subtitle }}</p>
-    {{- else }}
-      <h1 class="reading__title story">
-        {{- .Title }}
-      </h1>
-    {{- end }}
-    <span class="reading__byline">Arthur Conan Doyle</span>
-    <div class="ornament" aria-hidden="true">
-      <span></span><i></i><span></span>
-    </div>
+    <header class="reading__header">
+      <p class="eyebrow reading__meta">
+        {{- $section.Title }} ·
+        {{ .Params.year }}
+      </p>
+      {{- if .Params.chapter }}
+        <h1 class="reading__title">
+          Chapter
+          {{ .Params.chapter }}
+        </h1>
+        <p class="subtitle">{{- .Params.subtitle }}</p>
+      {{- else }}
+        <h1 class="reading__title story">
+          {{- .Title }}
+        </h1>
+      {{- end }}
+      <p class="reading__byline">Arthur Conan Doyle</p>
+      <div class="ornament" aria-hidden="true">
+        <span></span><i></i><span></span>
+      </div>
+    </header>
     <div class="reading__body">
       {{- .Content }}
     </div>
-    <nav class="reading__nav">
+    <nav
+      class="reading__nav"
+      aria-label="{{- if $isNovel -}}
+        Chapter
+      {{- else -}}
+        Story
+      {{ end }} navigation">
       {{- if $prev }}
         <span class="navigation-icon">
           <a href="{{- $prev.RelPermalink }}">
@@ -249,9 +257,6 @@
     {{- readFile "/static/images/icons/arrow.svg"| safeHTML }}
   </button>
   {{- with resources.Get "js/scroll-to-top.js" | minify | fingerprint }}
-    <script>{{ .Content | safeJS }}</script>
-  {{- end }}
-  {{- with resources.Get "js/canon-navigation-order.js" | minify | fingerprint }}
     <script>{{ .Content | safeJS }}</script>
   {{- end }}
 {{- end }}

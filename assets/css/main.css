@@ -111,7 +111,24 @@ body {
     0 0,
     1.5px 1.5px;
 }
+/* Skip to Main Content */
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
 
+  padding: 0.75rem 1rem;
+  background: var(--bg);
+  color: var(--fg);
+  border: 1px solid var(--accent);
+
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
 ::selection {
   background: var(--accent);
   color: var(--bg);
@@ -131,7 +148,7 @@ a:focus-visible {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid var(--accent);
+  outline: 2px solid var(--accent);
   outline-offset: 4px;
 }
 
@@ -144,6 +161,9 @@ h3 {
   line-height: 1.25;
   margin: 0;
   color: var(--fg);
+}
+h2 {
+  font-size: clamp(1.25rem, 2.5vw, 2.15rem);
 }
 
 .eyebrow {
@@ -347,6 +367,7 @@ h3 {
 
 .ledger {
   padding: clamp(4rem, 9vh, 6.5rem) var(--gutter);
+  padding-top: 0;
   max-width: 62rem;
   margin-inline: auto;
 }
@@ -390,11 +411,19 @@ h3 {
 .ledger-controls__select:focus-visible {
   border-color: var(--accent);
   color: var(--accent);
-  outline: none;
 }
-
+.ledger-controls__select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.ledger-groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 .ledger-group {
   border-top: 1px solid var(--accent-dim);
+  /* margin: 0; */
   padding: 2rem 0;
 }
 
@@ -471,10 +500,20 @@ h3 {
 /* Reading page                                                         */
 /* -------------------------------------------------------------------- */
 
-.reading {
+.reading,
+.breadcrumb {
   max-width: var(--measure);
   margin: 0 auto;
   padding: clamp(3.5rem, 9vh, 6rem) var(--gutter) 4rem;
+}
+.reading {
+  padding-top: 0;
+}
+.breadcrumb {
+  padding-bottom: 0;
+}
+.breadcrumb:has(+ .ledger) {
+  padding-left: 0;
 }
 
 .reading__meta {

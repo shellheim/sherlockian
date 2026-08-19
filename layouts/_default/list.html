@@ -16,15 +16,15 @@
   <link rel="canonical" href="{{ .Permalink }}" />
 {{ end }}
 {{ define "main" }}
-  <section class="ledger">
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <span class="breadcrumb-wrapper">
-        <a href="{{ "/" | relURL }}#the-canon">The Canon</a>
-        <span aria-hidden="true">/</span>
-        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </span>
-    </nav>
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <span class="breadcrumb-wrapper">
+      <a href="{{ "/" | relURL }}#the-canon">The Canon</a>
+      <span aria-hidden="true">/</span>
+      <a href="{{ .RelPermalink }}" aria-current="page">{{ .Title }}</a>
+    </span>
+  </nav>
 
+  <section class="ledger">
     <p class="eyebrow">
       {{ if eq .Params.work_type "novel" }}
         Novel ·
@@ -40,21 +40,25 @@
       {{ if eq .Params.work_type "novel" }}
         {{ range .Pages.ByParam "chapter" }}
           <li>
-            <span class="num">{{ printf "%02d" .Params.chapter }}</span>
+            <span class="num" aria-hidden="true"
+              >{{ printf "%02d" .Params.chapter }}</span
+            >
             <a href="{{ .RelPermalink }}">Chapter {{ .Params.chapter }}</a>
           </li>
         {{ end }}
       {{ else }}
         {{ range .Pages.ByParam "release_order" }}
           <li>
-            <span class="num">{{ printf "%02d" .Params.release_order }}</span>
+            <span class="num" aria-hidden="true"
+              >{{ printf "%02d" .Params.release_order }}</span
+            >
             <a href="{{ .RelPermalink }}">{{ .Params.Title }}</a>
           </li>
         {{ end }}
       {{ end }}
     </ol>
 
-    <nav class="reading__nav">
+    <nav class="reading__nav" aria-label="Canon navigation">
       <a href="{{ "/" | relURL }}">&larr; The Canon</a>
     </nav>
   </section>

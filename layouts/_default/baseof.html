@@ -38,17 +38,18 @@
     {{- end }}
   </head>
   <body>
+    <a class="skip-link" href="#main-content"> Skip to main content </a>
     <header class="site-header">
       <a class="site-header__mark" href="{{- "/" | relURL }}"
         >Sherlock Holmes</a
       >
-      <nav class="site-header__nav">
-        <a href="{{- "/" | relURL }}#the-canon" aria-current="page"
-          >The Canon</a
-        >
+      <nav class="site-header__nav" aria-label="Primary">
+        <a href="{{- "/" | relURL }}#the-canon">The Canon</a>
       </nav>
     </header>
-    {{- block "main" . }}{{- end }}
+    <main id="main-content">
+      {{- block "main" . }}{{- end }}
+    </main>
     <footer class="site-footer">
       <p>Arthur Conan Doyle, 1859–1930</p>
       <p>The canon is in the public domain.</p>
