@@ -10,12 +10,21 @@
       <span></span>
     </div>
 
-    <figure class="illustration illustration__404">
-      <img
-        class="image__404 illustration__image"
-        src="/images/illustrations/the-man-with-the-twisted-lip.png"
-        alt="The Pipe was still between his lips" />
-    </figure>
+    {{- with resources.Get "images/illustrations/the-man-with-the-twisted-lip.png" -}}
+      {{- $webp := .Resize "900x webp q80" -}}
+      <figure class="illustration illustration__404">
+        <picture>
+          <source type="image/webp" srcset="{{ $webp.RelPermalink }}" />
+          <img
+            class="image__404 illustration__image"
+            src="{{ $webp.RelPermalink }}"
+            width="{{ .Width }}"
+            height="{{ .Height }}"
+            alt="The Pipe was still between his lips" />
+        </picture>
+      </figure>
+    {{- end -}}
+
 
     <blockquote class="hero__quote">
       &ldquo;I have no data yet. It is a capital mistake to theorize before one

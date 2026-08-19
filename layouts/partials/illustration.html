@@ -1,13 +1,12 @@
 {{- $page := .page -}}
 {{- $caption := .caption -}}
 {{- $number := .number | default 1 -}}
-{{- $src := "" -}}
 {{- $base := "" -}}
 
 {{- if isset $page.Params "chapter" -}}
-  {{- $base = printf "/images/illustrations/%s/chapter-%d" ($page.Params.novel | urlize) $page.Params.chapter -}}
+  {{- $base = printf "images/illustrations/%s/chapter-%d" ($page.Params.novel | urlize) $page.Params.chapter -}}
 {{- else -}}
-  {{- $base = printf "/images/illustrations/%s" ($page.Params.title | urlize) -}}
+  {{- $base = printf "images/illustrations/%s" ($page.Params.title | urlize) -}}
 {{- end -}}
 
 {{- if gt $number 1 -}}
@@ -16,20 +15,37 @@
   {{- $base = printf "%s-%s" $base $suffix -}}
 {{- end -}}
 
-{{- if fileExists (printf "static%s.jpg" $base) -}}
-  {{- $src = printf "%s.jpg" $base -}}
-{{- else -}}
-  {{- $src = printf "%s.png" $base -}}
+{{- $img := resources.Get (printf "%s.jpg" $base) -}}
+{{- if not $img -}}
+  {{- $img = resources.Get (printf "%s.png" $base) -}}
 {{- end -}}
 
+{{- with $img -}}
+  {{- $maxW := 1400 -}}
+  {{- $w := $maxW -}}
+  {{- if lt .Width $maxW -}}
+    {{- $w = .Width -}}
+  {{- end -}}
+  {{- $full := .Resize (printf "%dx webp q80" $w) -}}
+  {{- $small := .Resize (printf "%dx webp q80" (int (div $w 2))) -}}
 
-<figure class="illustration">
-  <img
-    class="illustration__image"
-    src="{{ $src | absURL }}"
-    alt="{{ $caption }}"
-    loading="lazy" />
-  {{- with $caption }}
-    <figcaption class="illustration__caption">“{{ . }}”</figcaption>
-  {{- end }}
-</figure>
+
+  <figure class="illustration">
+    <picture>
+      <source
+        type="image/webp"
+        srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
+        sizes="(max-width: 700px) 100vw, 700px" />
+      <img
+        class="illustration__image"
+        src="{{ $full.RelPermalink }}"
+        width="{{ .Width }}"
+        height="{{ .Height }}"
+        alt="{{ $caption }}"
+        loading="lazy" />
+    </picture>
+    {{- with $caption }}
+      <figcaption class="illustration__caption">“{{ . }}”</figcaption>
+    {{- end }}
+  </figure>
+{{- end -}}

@@ -1,10 +1,11 @@
 {{ define "main" }}
   <section class="hero">
     <div class="hero__media">
+      {{ $image := resources.Get .Site.Params.hero }}
       <img
         fetchpriority="high"
         class="hero__image"
-        src="{{ .Site.Params.hero | relURL }}"
+        src="{{ $image.RelPermalink }}"
         alt="" />
       <div class="hero__scrim"></div>
     </div>

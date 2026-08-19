@@ -708,6 +708,7 @@ h3 {
 }
 
 .hero__intro__404 {
+  color: var(--fg);
   max-width: min(60ch, 100%);
   margin: 0 auto 2rem;
   text-align: center;
