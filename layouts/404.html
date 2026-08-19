@@ -11,7 +11,7 @@
     </div>
 
     {{- with resources.Get "images/illustrations/the-man-with-the-twisted-lip.png" -}}
-      {{- $webp := .Resize "900x webp q80" -}}
+      {{- $webp := .Resize "500x webp q80" -}}
       <figure class="illustration illustration__404">
         <picture>
           <source type="image/webp" srcset="{{ $webp.RelPermalink }}" />
