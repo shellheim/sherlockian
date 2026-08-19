@@ -16,6 +16,9 @@
         <meta name="twitter:image" content="{{- . | absURL }}" />
       {{- end }}
     {{- end }}
+    {{ if eq .Kind "404" }}
+      <meta name="robots" content="noindex, follow" />
+    {{ end }}
     {{- block "meta" . }}
       <meta property="og:type" content="website" />
       <meta property="og:title" content="{{- .Title }}" />
@@ -33,6 +36,12 @@
       rel="icon"
       type="image/svg+xml"
       href="{{- site.Params.favicon | absURL }}" />
+    <link
+      rel="preload"
+      href="/fonts/Cinzel.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin />
     {{- with resources.Get "css/main.css" | minify | fingerprint }}
     <style>{{ .Content | safeCSS  }}</style>
     {{- end }}

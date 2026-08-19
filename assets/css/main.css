@@ -5,7 +5,7 @@ the reader's light/dark mode.
 
 Types
 Cinzel            — display face, used sparingly: wordmark, titles, numerals
-Libre Baskerville — body face, long-form reading, captions (italic)
+Baskervville — body face, long-form reading, captions (italic)
 ========================================================================== */
 
 @font-face {
@@ -177,7 +177,7 @@ h2 {
 }
 
 .caption {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Baskervville', serif;
   font-style: italic;
   font-size: 0.92rem;
   color: var(--fg-dim);
@@ -394,7 +394,7 @@ h2 {
 }
 
 .ledger-controls__select {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Baskervville', serif;
   font-size: 0.92rem;
   color: var(--fg);
   background: var(--bg-2);
@@ -460,7 +460,7 @@ h2 {
 }
 
 .ledger-group__meta {
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Baskervville', serif;
   font-style: italic;
   font-size: 0.9rem;
   color: var(--fg-dim);
