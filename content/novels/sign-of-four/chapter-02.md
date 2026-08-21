@@ -53,7 +53,9 @@ She put her hand to her throat, and a choking sob cut short the sentence.
 
 “Yes, and no later than today. That is why I have come to you. This morning I received this letter, which you will perhaps read for yourself.”
 
-“Thank you,” said Holmes. “The envelope, too, please. Postmark, London, S. W. Date, July 7. Hum! Man’s thumb-mark on corner — probably postman. Best quality paper. Envelopes at sixpence a packet. Particular man in his stationery. No address.
+“Thank you,” said Holmes. “The envelope, too, please. Postmark, London, S. W. Date, July 7.  
+
+Hum! Man’s thumb-mark on corner — probably postman. Best quality paper. Envelopes at sixpence a packet. Particular man in his stationery. No address.
 
 “Be at the third pillar from the left outside the Lyceum Theatre tonight at seven o’clock. If you are distrustful bring two friends. You are a wronged woman and shall have justice. Do not bring police. If you do, all will be in vain. Your unknown friend.
 
@@ -61,7 +63,7 @@ Well, really, this is a very pretty little mystery! What do you intend to do, Mi
 
 “That is exactly what I want to ask you.”
 
-“Then we shall most certainly go — you and I and — yes. why Dr. Watson is the very man. Your correspondent says two friends. He and I have worked together before.”
+“Then we shall most certainly go — you and I and — yes, why Dr. Watson is the very man. Your correspondent says two friends. He and I have worked together before.”
 
 “But would he come?” she asked with something appealing in her voice and expression.
 
