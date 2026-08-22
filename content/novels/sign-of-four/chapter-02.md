@@ -71,7 +71,7 @@ Well, really, this is a very pretty little mystery! What do you intend to do, Mi
 
 “You are both very kind,” she answered. “I have led a retired life and have no friends whom I could appeal to. If I am here at six it will do, I suppose?”
 
-“You must not be later,” said Holmes. “There. is one other point, however. Is this handwriting the same as that upon the pearl-box addresses?”
+“You must not be later,” said Holmes. “There is one other point, however. Is this handwriting the same as that upon the pearl-box addresses?”
 
 “I have them here,” she answered, producing half a dozen pieces of paper.
 
