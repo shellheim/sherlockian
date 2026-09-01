@@ -4,9 +4,9 @@
   try {
     mode = localStorage.getItem(STORAGE_KEY);
   } catch (e) {}
-  // Rendered links already default to "group" order (the canon
-  // page's own default), so only swap when the reader has chosen chrono.
-  if (mode !== 'chrono') return;
+  // Rendered links already default to chrono order (the canon
+  // page's own default), so only swap when the reader has chosen group order.
+  if (mode === 'chrono') return;
   ['cross-work-prev', 'cross-work-next'].forEach(function (id) {
     const el = document.getElementById(id);
     if (!el) return;
