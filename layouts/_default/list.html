@@ -6,8 +6,6 @@
   {{ else }}
     {{ $desc = printf "Browse the %d stories in %s by Arthur Conan Doyle." (len .Pages) .Title }}
   {{ end }}
-
-
   <meta property="og:type" content="website" />
   <meta property="og:title" content="{{ .Title }}" />
   <meta property="og:description" content="{{ $desc }}" />
@@ -15,6 +13,7 @@
   <meta name="twitter:description" content="{{ $desc }}" />
   <link rel="canonical" href="{{ .Permalink }}" />
 {{ end }}
+
 {{ define "main" }}
   <nav class="breadcrumb" aria-label="Breadcrumb">
     <span class="breadcrumb-wrapper">
@@ -47,7 +46,15 @@
           </li>
         {{ end }}
       {{ else }}
-        {{ range .Pages.ByParam "release_order" }}
+        {{ range where .Pages "Params.preface" true }}
+          <li>
+            <span class="num" aria-hidden="true" style="visibility:hidden"
+              >00</span
+            >
+            <a href="{{ .RelPermalink }}">{{ .Params.Title }}</a>
+          </li>
+        {{ end }}
+        {{ range where (.Pages.ByParam "release_order") "Params.preface" "ne" true }}
           <li>
             <span class="num" aria-hidden="true"
               >{{ printf "%02d" .Params.release_order }}</span

@@ -39,7 +39,7 @@ John Ferrier groaned internally.
 
 John Ferrier made no answer, but he played nervously with his riding-whip.
 
-“Upon this one point your whole faith shall be tested—so it has been decided in the Sacred Council of Four. The girl is young, and we would not have her wed grey hairs, neither would we deprive her of all choice. We Elders have many heifers,1 but our children must also be provided. Stangerson has a son, and Drebber has a son, and either of them would gladly welcome your daughter to their house. Let her choose between them. They are young and rich, and of the true faith. What say you to that?”
+“Upon this one point your whole faith shall be tested—so it has been decided in the Sacred Council of Four. The girl is young, and we would not have her wed grey hairs, neither would we deprive her of all choice. We Elders have many heifers[^1] but our children must also be provided. Stangerson has a son, and Drebber has a son, and either of them would gladly welcome your daughter to their house. Let her choose between them. They are young and rich, and of the true faith. What say you to that?”
 
 Ferrier remained silent for some little time with his brows knitted.
 
@@ -80,3 +80,5 @@ Lucy laughed through her tears at her father’s description.
 “Wait till Jefferson comes, and we’ll soon manage that. In the meantime, don’t you fret yourself, my dearie, and don’t get your eyes swelled up, else he’ll be walking into me when he sees you. There’s nothing to be afeared about, and there’s no danger at all.”
 
 John Ferrier uttered these consoling remarks in a very confident tone, but she could not help observing that he paid unusual care to the fastening of the doors that night, and that he carefully cleaned and loaded the rusty old shotgun which hung upon the wall of his bedroom.
+
+[^1]: Heber C. Kemball, in one of his sermons, alludes to his hundred wives under this endearing epithet.

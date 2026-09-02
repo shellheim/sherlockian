@@ -166,6 +166,11 @@ h2 {
   font-size: clamp(1.25rem, 2.5vw, 2.15rem);
 }
 
+.footnotes > hr {
+  display: none;
+  border-top: 2px solid var(--accent);
+}
+
 .eyebrow {
   font-family: 'Cinzel', serif;
   font-size: 1rem;
@@ -543,7 +548,7 @@ h2 {
   margin: 0 0 1.4rem;
 }
 
-.reading__body p:first-of-type::first-letter {
+.reading__body > p:first-of-type::first-letter {
   font-family: 'Cinzel', serif;
   font-size: 4rem;
   font-weight: 600;
@@ -573,6 +578,15 @@ h2 {
 }
 
 .reading__nav a:hover {
+  color: var(--accent);
+}
+
+.footnote-ref {
+  font-size: 1.25rem;
+}
+
+.footnote-ref,
+.footnote-backref {
   color: var(--accent);
 }
 
