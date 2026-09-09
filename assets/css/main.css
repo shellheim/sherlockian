@@ -234,14 +234,14 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem var(--gutter);
+  padding: 0.75rem var(--gutter);
   border-bottom: 1px solid var(--accent-dim);
 }
 
 .site-header__mark {
   font-family: 'Cinzel', serif;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.75rem;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg);
@@ -254,8 +254,8 @@ h2 {
 
 .site-header__nav a {
   font-family: 'Cinzel', serif;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
@@ -780,11 +780,11 @@ h2 {
   }
 
   .site-header__mark {
-    font-size: 1rem;
+    font-size: 1.45rem;
   }
 
   .site-header__nav a {
-    font-size: 0.7rem;
+    font-size: 1rem;
     margin-left: 1.2rem;
   }
 
@@ -841,11 +841,7 @@ h2 {
   }
 }
 
-@media (max-width: 400px) {
-  .site-header__mark {
-    font-size: 1.25rem;
-  }
-
+@media (max-width: 500px) {
   .site-header {
     flex-direction: column;
   }
@@ -865,5 +861,11 @@ h2 {
 
   .hero__quote {
     font-size: 0.94rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .site-header__mark {
+    font-size: 1.2rem;
   }
 }
