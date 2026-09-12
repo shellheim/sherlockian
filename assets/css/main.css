@@ -864,3 +864,34 @@ h2 {
     font-size: 0.94rem;
   }
 }
+
+/* -------------------------------------------------------------------- */
+/* Print                                                                  */
+/* -------------------------------------------------------------------- */
+
+@media print {
+  .breadcrumb,
+  .site-header,
+  .site-footer,
+  .reading__nav,
+  .scroll-top,
+  .illustration__caption {
+    display: none !important;
+  }
+
+  @page {
+    margin-top: 0.25in;
+    margin-bottom: 0.25in;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .story-content,
+  main {
+    width: 100% !important;
+    max-width: none !important;
+  }
+}
