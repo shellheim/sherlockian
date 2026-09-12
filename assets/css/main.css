@@ -91,13 +91,6 @@ body {
 
   /* subtle paper grain, has two offset dot layers, kept faint on purpose */
   background-color: var(--bg);
-  background-image:
-    radial-gradient(var(--grain) 0.6px, transparent 0.6px),
-    radial-gradient(var(--grain) 0.6px, transparent 0.6px);
-  background-size: 3px 3px;
-  background-position:
-    0 0,
-    1.5px 1.5px;
 }
 
 /* Skip to Main Content */
@@ -875,11 +868,13 @@ h2 {
   .site-footer,
   .reading__nav,
   .scroll-top,
-  .illustration__caption {
+  .illustration__caption,
+  .skip-link {
     display: none !important;
   }
 
   @page {
+    size: A4 portrait;
     margin-top: 0.25in;
     margin-bottom: 0.25in;
   }
