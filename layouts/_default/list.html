@@ -1,5 +1,6 @@
 {{ define "meta" }}
   {{ $isNovel := eq .Params.work_type "novel" }}
+  {{ $pageTitle := partial "page-title.html" . }}
   {{ $desc := "" }}
   {{ if $isNovel }}
     {{ $desc = printf "Read %s by Arthur Conan Doyle, chapter by chapter." .Title }}
@@ -7,9 +8,9 @@
     {{ $desc = printf "Browse the %d stories in %s by Arthur Conan Doyle." (len .Pages) .Title }}
   {{ end }}
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:title" content="{{ $pageTitle }}" />
   <meta property="og:description" content="{{ $desc }}" />
-  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:title" content="{{ $pageTitle }}" />
   <meta name="twitter:description" content="{{ $desc }}" />
   <link rel="canonical" href="{{ .Permalink }}" />
 {{ end }}

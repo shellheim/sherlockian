@@ -1,0 +1,18 @@
+{{- $p := . -}}
+{{- if $p.IsHome -}}
+  {{- $p.Title -}}
+{{- else if eq $p.Kind "section" -}}
+  {{- $isNovel := eq $p.Params.work_type "novel" -}}
+  {{- if $isNovel -}}
+    {{- printf "%s  | Sherlockian | Read the complete Sherlock Holmes online" $p.Title -}}
+  {{- else -}}
+    {{- printf "%s  | Sherlockian | Read the complete Sherlock Holmes online" $p.Title -}}
+  {{- end -}}
+{{- else -}}
+  {{- $section := $p.CurrentSection -}}
+  {{- if $p.Params.chapter -}}
+    {{- printf "%s | Chapter %v | %s | Sherlockian | Read the complete Sherlock Holmes online" $p.Params.novel $p.Params.chapter $p.Params.subtitle -}}
+  {{- else -}}
+    {{- printf "%s | %s | Sherlockian | Read the complete Sherlock Holmes online" $p.Title $section.Title -}}
+  {{- end -}}
+{{- end -}}

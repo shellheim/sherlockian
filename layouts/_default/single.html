@@ -1,9 +1,6 @@
 {{- define "meta" }}
   {{- $section := .CurrentSection }}
-  {{- $pageTitle := .Title }}
-  {{- if .Params.chapter }}
-    {{- $pageTitle = printf "%s — Chapter %v" $section.Title .Params.chapter }}
-  {{- end }}
+  {{- $pageTitle := partial "page-title.html" . }}
   {{- $excerpt := .Summary | plainify | truncate 160 }}
   {{- $desc := $excerpt }}
   {{- if not $excerpt }}
@@ -43,6 +40,7 @@
     <meta name="twitter:image" content="{{ . | absURL }}" />
   {{- end }}
 {{- end }}
+
 {{- define "main" }}
   {{- $section := .CurrentSection }}
   {{- $isNovel := eq $section.Params.work_type "novel" }}
