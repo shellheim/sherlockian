@@ -517,7 +517,7 @@ h2 {
 }
 
 .breadcrumb {
-  font-size: clamp(0.5rem, 1.75vw, 1.1rem);
+  font-size: clamp(0.8rem, 2vw, 1.1rem);
   max-width: 62rem;
   margin: auto;
   padding: clamp(4rem, 9vh, 6.5rem) var(--gutter);
