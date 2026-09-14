@@ -36,14 +36,23 @@ Baskervville — body face, long-form reading, captions (italic)
   color-scheme: light dark;
 
   --bg: light-dark(#fbfdfb, #111317);
-  --bg-2: light-dark(#ece0c2, #1b232b);
-  --header-bg: light-dark(#ebebeb, #242931);
-  --fg: light-dark(#232930, #fefefe) --fg-dim: light-dark(#5b6672, #94a0aa);
+  --bg-2: light-dark(#e4e4e4, #1b232b);
+
+  --header-bg: linear-gradient(
+    to right,
+    light-dark(#e6e8e7, #242931) 0%,
+    light-dark(#e9e9e9, #242931) 50%,
+    light-dark(#e6e8e7, #242931) 100%
+  );
+  --header-shadow: 0 3px 10px
+    light-dark(rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.3));
+
+  --fg: light-dark(#232930, #e4e4e4);
   --fg-dim: light-dark(#5b6672, #94a0aa);
-  --accent: light-dark(#2f5d8a, #74acdc);
+
+  --accent: light-dark(#3b72a9, #74acdc);
   --accent-dim: light-dark(#aec5d9, #37495b);
   --accent-deep: light-dark(#16324f, #c3ddf3);
-  --grain: light-dark(rgba(70, 52, 20, 0.05), rgba(255, 255, 255, 0.035));
 
   --hero-fg: #f5eeda;
   --hero-fg-dim: #c9d5df;
@@ -80,17 +89,14 @@ html {
 
 body {
   margin: 0;
+  background-color: var(--bg);
   color: var(--fg);
   font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
   font-size: 1.0625rem;
   line-height: 1.75;
-  -webkit-font-smoothing: antialiased;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-
-  /* subtle paper grain, has two offset dot layers, kept faint on purpose */
-  background-color: var(--bg);
 }
 
 /* Skip to Main Content */
@@ -151,9 +157,14 @@ h2 {
   font-size: clamp(1.25rem, 2.5vw, 2.15rem);
 }
 
-.footnotes > hr {
-  display: none;
-  border-top: 2px solid var(--accent);
+.footnotes {
+  hr {
+    display: none;
+  }
+
+  li {
+    color: var(--fg-dim);
+  }
 }
 
 .eyebrow {
@@ -223,7 +234,7 @@ h2 {
   background: var(--header-bg);
   justify-content: space-between;
   padding: 0.75rem var(--gutter);
-  border-bottom: 2px solid var(--accent-dim);
+  box-shadow: var(--header-shadow);
 }
 
 .site-header__mark {
@@ -237,6 +248,7 @@ h2 {
 
   &:hover {
     color: var(--accent);
+    text-decoration: none;
   }
 }
 
@@ -331,8 +343,8 @@ h2 {
 .btn {
   display: inline-block;
   font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   text-decoration: none;
@@ -506,12 +518,15 @@ h2 {
 
 .breadcrumb {
   font-size: clamp(0.5rem, 1.75vw, 1.1rem);
-  color: var(--fg-dim);
   max-width: 62rem;
   margin: auto;
   padding: clamp(4rem, 9vh, 6.5rem) var(--gutter);
   padding-bottom: 0;
 
+  span,
+  a {
+    color: var(--fg-dim);
+  }
   &:has(+ .reading) {
     max-width: var(--measure);
     margin: 0 auto;
@@ -541,6 +556,7 @@ h2 {
 }
 
 .reading__body {
+  font-size: clamp(1.0625rem, 1rem + 0.15vw, 1.15rem);
   p {
     margin: 0 0 1.4rem;
   }
@@ -568,7 +584,7 @@ h2 {
 
   a {
     display: flex;
-    justify-items: center;
+    align-items: center;
     gap: 0.5rem;
     text-decoration: none;
     color: var(--fg-dim);
@@ -596,7 +612,7 @@ h2 {
   height: 44px;
   border: 2px solid var(--fg-dim);
   border-radius: 50%;
-  background: var(--bg-2);
+  background: var(--header-bg);
   color: var(--fg-dim);
   display: flex;
   align-items: center;
@@ -664,21 +680,6 @@ h2 {
   color: var(--fg-dim);
 }
 
-@media (max-width: 640px) {
-  .illustration {
-    margin: 2.5rem auto;
-  }
-
-  .illustration__image {
-    max-height: none;
-  }
-
-  .illustration__caption {
-    font-size: 0.85rem;
-    padding-inline: 0.5rem;
-  }
-}
-
 /* -------------------------------------------------------------------- */
 /* Footer                                                               */
 /* -------------------------------------------------------------------- */
@@ -741,7 +742,7 @@ h2 {
   width: min(34rem, 100%);
   margin: 1.5rem auto 2rem;
   padding-left: 1.5rem;
-  border-left: 2.5px solid var(--accent-dim);
+  border-left: 3px solid var(--accent-dim);
   color: var(--fg);
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.65;
@@ -769,7 +770,7 @@ h2 {
 }
 
 /* -------------------------------------------------------------------- */
-/* 404 responsive                                                       */
+/* Responsive                                                       */
 /* -------------------------------------------------------------------- */
 
 @media (max-width: 640px) {
@@ -828,6 +829,18 @@ h2 {
     cite {
       font-size: 0.78rem;
     }
+  }
+  .illustration {
+    margin: 2.5rem auto;
+  }
+
+  .illustration__image {
+    max-height: none;
+  }
+
+  .illustration__caption {
+    font-size: 0.85rem;
+    padding-inline: 0.5rem;
   }
 }
 
