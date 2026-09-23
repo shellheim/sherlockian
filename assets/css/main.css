@@ -32,8 +32,25 @@ Baskervville — body face, long-form reading, captions (italic)
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Dropcap-Light';
+  src: url('/fonts/Dropcap.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Dropcap-Dark';
+  src: url('/fonts/Dropcap-light.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
 :root {
   color-scheme: light dark;
+
+  --font-dropcap: 'Dropcap-Light';
 
   --bg: light-dark(#fbfdfb, #111317);
   --bg-2: light-dark(#e4e4e4, #1b232b);
@@ -63,6 +80,11 @@ Baskervville — body face, long-form reading, captions (italic)
 
   --measure: 880px;
   --gutter: clamp(1.5rem, 5vw, 4rem);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-dropcap: 'Dropcap-Dark';
+  }
 }
 
 *,
@@ -568,8 +590,8 @@ blockquote {
   }
 
   > p:first-of-type::first-letter {
-    font-family: 'Cinzel', serif;
-    font-size: 4rem;
+    font-family: var(--font-dropcap), 'Cinzel', serif;
+    font-size: clamp(9rem, 12vw, 14rem);
     font-weight: 600;
     color: var(--accent);
     float: left;
