@@ -10,42 +10,57 @@
 {{- end -}}
 
 {{- if gt $number 1 -}}
-  {{- $suffixes := slice "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" -}}
+  {{- $suffixes := slice "two" "three" "four" "five" "six" "seven" "eight" "nine" "ten" "eleven" "twelve" "thirteen" "fourteen" "fifteen" -}}
   {{- $suffix := index $suffixes (sub $number 2) -}}
   {{- $base = printf "%s-%s" $base $suffix -}}
 {{- end -}}
 
-{{- $img := resources.Get (printf "%s.jpg" $base) -}}
-{{- if not $img -}}
-  {{- $img = resources.Get (printf "%s.png" $base) -}}
-{{- end -}}
-
-{{- with $img -}}
-  {{- $maxW := 1400 -}}
-  {{- $w := $maxW -}}
-  {{- if lt .Width $maxW -}}
-    {{- $w = .Width -}}
-  {{- end -}}
-  {{- $full := .Resize (printf "%dx webp q80" $w) -}}
-  {{- $small := .Resize (printf "%dx webp q80" (int (div $w 2))) -}}
-
-
+{{- $svg := resources.Get (printf "%s.svg" $base) -}}
+<!--Custom styles for dancing men-->
+{{- if $svg -}}
   <figure class="illustration">
-    <picture>
-      <source
-        type="image/webp"
-        srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
-        sizes="(max-width: 700px) 100vw, 700px" />
-      <img
-        class="illustration__image"
-        src="{{ $full.RelPermalink }}"
-        width="{{ .Width }}"
-        height="{{ .Height }}"
-        alt="{{ $caption }}"
-        loading="lazy" />
-    </picture>
+    <div class="illustration__image" style="border:none;width:60%;">
+      {{ $svg.Content | safeHTML }}
+    </div>
     {{- with $caption }}
       <figcaption class="illustration__caption">“{{ . }}”</figcaption>
-    {{- end }}
+    {{- end -}}
   </figure>
+{{- else -}}
+  {{/* Raster fallback */}}
+  {{- $img := resources.Get (printf "%s.jpg" $base) -}}
+  {{- if not $img -}}
+    {{- $img = resources.Get (printf "%s.png" $base) -}}
+  {{- end -}}
+
+  {{- with $img -}}
+    {{- $maxW := 1400 -}}
+    {{- $w := $maxW -}}
+    {{- if lt .Width $maxW -}}
+      {{- $w = .Width -}}
+    {{- end -}}
+
+    {{- $full := .Resize (printf "%dx webp q80" $w) -}}
+    {{- $small := .Resize (printf "%dx webp q80" (int (div $w 2))) -}}
+
+
+    <figure class="illustration">
+      <picture>
+        <source
+          type="image/webp"
+          srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $full.RelPermalink }} {{ $full.Width }}w"
+          sizes="(max-width: 700px) 100vw, 700px" />
+        <img
+          class="illustration__image"
+          src="{{ $full.RelPermalink }}"
+          width="{{ .Width }}"
+          height="{{ .Height }}"
+          alt="{{ $caption }}"
+          loading="lazy" />
+      </picture>
+      {{- with $caption }}
+        <figcaption class="illustration__caption">“{{ . }}”</figcaption>
+      {{- end }}
+    </figure>
+  {{- end -}}
 {{- end -}}

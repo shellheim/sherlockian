@@ -1,0 +1,8 @@
+{{- $name := .Get 0 -}}
+{{- $svg := resources.Get (printf "images/illustrations/%s.svg" $name) -}}
+
+{{- with $svg -}}
+  <span class="inline-svg" aria-hidden="true">
+    {{ .Content | safeHTML }}
+  </span>
+{{- end -}}

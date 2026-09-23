@@ -3,6 +3,7 @@
   {{- $pageTitle := partial "page-title.html" . }}
   {{- $excerpt := .Summary | plainify | truncate 160 }}
   {{- $desc := $excerpt }}
+
   {{- if not $excerpt }}
     {{- if .Params.chapter }}
       {{- $desc = printf "Read Chapter %v from %s by Arthur Conan Doyle." .Params.chapter $section.Title }}
@@ -17,27 +18,29 @@
   <meta name="twitter:title" content="{{- $pageTitle }}" />
   <meta name="twitter:description" content="{{- $desc }}" />
   <link rel="canonical" href="{{- .Permalink }}" />
-  {{- $ogImage := "" -}}
+  {{- $base := "" -}}
 
+  {{/* Novel chapter */}}
   {{- if isset .Params "chapter" -}}
-    {{- $base := printf "/images/illustrations/%s/chapter-%d" (.Params.novel | urlize) .Params.chapter -}}
-    {{- if fileExists (printf "static%s.jpg" $base) -}}
-      {{- $ogImage = printf "%s.jpg" $base -}}
-    {{- else -}}
-      {{- $ogImage = printf "%s.png" $base -}}
-    {{- end -}}
+    {{- $base = printf "images/illustrations/%s/chapter-%d" (.Params.novel | urlize) .Params.chapter -}}
+
+    {{/* Story */}}
   {{- else if isset .Params "collection" -}}
-    {{- $base := printf "/images/illustrations/%s" (.Params.title | urlize) -}}
-    {{- if fileExists (printf "static%s.jpg" $base) -}}
-      {{- $ogImage = printf "%s.jpg" $base -}}
-    {{- else -}}
-      {{- $ogImage = printf "%s.png" $base -}}
-    {{- end -}}
+    {{- $base = printf "images/illustrations/%s" (.Params.title | urlize) -}}
   {{- end -}}
 
-  {{- with $ogImage }}
-    <meta property="og:image" content="{{ . | absURL }}" />
-    <meta name="twitter:image" content="{{ . | absURL }}" />
+  {{- if $base -}}
+    {{- $img := resources.Get (printf "%s.jpg" $base) -}}
+
+    {{- if not $img -}}
+      {{- $img = resources.Get (printf "%s.png" $base) -}}
+    {{- end -}}
+
+    {{- with $img -}}
+      {{- $og := .Resize "1400x jpg q85" -}}
+      <meta property="og:image" content="{{ $og.Permalink }}" />
+      <meta name="twitter:image" content="{{ $og.Permalink }}" />
+    {{- end -}}
   {{- end }}
 {{- end }}
 

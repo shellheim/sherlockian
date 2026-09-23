@@ -1,3 +1,42 @@
+{{ define "meta" }}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="canonical" href="https://sherlockian.vercel.app/404" />
+  <meta
+    name="description"
+    content="Case file missing. The page you were pursuing appears to have left no trail here." />
+  <meta property="author" content="Arthur Conan Doyle" />
+  <meta
+    name="theme-color"
+    content="#fefdfb"
+    media="(prefers-color-scheme: light)" />
+  <meta
+    name="theme-color"
+    content="#141a20"
+    media="(prefers-color-scheme: dark)" />
+  <meta
+    property="og:site_name"
+    content="Sherlockian | Read The Complete Sherlock Holmes online" />
+  <meta property="og:url" content="https://sherlockian.vercel.app/404" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Case File Missing | Sherlockian" />
+  <meta
+    property="og:description"
+    content="Whatever page you were pursuing, reader, it appears to have left no trail here. Perhaps it was never filed or perhaps it awaits us elsewhere in the canon." />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Case File Missing | Sherlockian" />
+  <meta
+    name="twitter:description"
+    content="Whatever page you were pursuing, reader, it appears to have left no trail here. Perhaps it was never filed or perhaps it awaits us elsewhere in the canon." />
+
+  {{ with resources.Get "images/illustrations/the-man-with-the-twisted-lip.jpg" -}}
+    {{- $ogImage := .Resize "500x jpg q85" -}}
+    <meta property="og:image" content="{{ $ogImage.Permalink }}" />
+    <meta name="twitter:image" content="{{ $ogImage.Permalink }}" />
+  {{- end -}}
+{{ end }}
 {{ define "main" }}
   <section class="hero__404">
     <h1 class="title__404">404</h1>

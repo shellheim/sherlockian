@@ -1,9 +1,9 @@
 ---
-title: "The Dancing Men"
-collection: "return"
+title: 'The Dancing Men'
+collection: 'return'
 year: 1903
 release_order: 27
-layout: "single"
+layout: 'single'
 ---
 
 Holmes had been seated for some hours in silence with his long, thin back curved over a chemical vessel in which he was brewing a particularly malodorous product. His head was sunk upon his breast, and he looked from my point of view like a strange, lank bird, with dull gray plumage and a black topknot.
@@ -58,7 +58,11 @@ A heavy step was heard upon the stairs, and an instant later there entered a tal
 
 Holmes held up the paper so that the sunlight shone full upon it. It was a page torn from a notebook. The markings were done in pencil, and ran in this way:
 
+{{< illustration number=3 caption="" >}}
+
 Holmes examined it for some time, and then, folding it carefully up, he placed it in his pocketbook.
+
+{{< illustration caption="Holmes held up the paper." >}}
 
 “This promises to be a most interesting and unusual case,” said he. “You gave me a few particulars in your letter, Mr. Hilton Cubitt, but I should be very much obliged if you would kindly go over it all again for the benefit of my friend, Dr. Watson.”
 
@@ -112,9 +116,13 @@ We had not long to wait, for our Norfolk squire came straight from the station a
 
 “Yes, I saw him at his work. But I will tell you everything in order. When I got back after my visit to you, the very first thing I saw next morning was a fresh crop of dancing men. They had been drawn in chalk upon the black wooden door of the tool-house, which stands beside the lawn in full view of the front windows. I took an exact copy, and here it is.” He unfolded a paper and laid it upon the table. Here is a copy of the hieroglyphics:
 
+{{< illustration number=4 caption="" >}}
+
 “Excellent!” said Holmes. “Excellent! Pray continue.”
 
 “When I had taken the copy, I rubbed out the marks, but, two mornings later, a fresh inscription had appeared. I have a copy of it here:”
+
+{{< illustration number=5 caption="" >}}
 
 Holmes rubbed his hands and chuckled with delight.
 
@@ -130,11 +138,15 @@ Holmes rubbed his hands and chuckled with delight.
 
 “Suddenly, as she spoke, I saw her white face grow whiter yet in the moonlight, and her hand tightened upon my shoulder. Something was moving in the shadow of the tool-house. I saw a dark, creeping figure which crawled round the corner and squatted in front of the door. Seizing my pistol, I was rushing out, when my wife threw her arms round me and held me with convulsive strength. I tried to throw her off, but she clung to me most desperately. At last I got clear, but by the time I had opened the door and reached the house the creature was gone. He had left a trace of his presence, however, for there on the door was the very same arrangement of dancing men which had already twice appeared, and which I have copied on that paper. There was no other sign of the fellow anywhere, though I ran all over the grounds. And yet the amazing thing is that he must have been there all the time, for when I examined the door again in the morning, he had scrawled some more of his pictures under the line which I had already seen.”
 
+{{< illustration number=2 caption="my wife threw her arms around me." >}}
+
 “Have you that fresh drawing?”
 
 “Yes, it is very short, but I made a copy of it, and here it is.”
 
 Again he produced a paper. The new dance was in this form:
+
+{{< illustration number=6 caption="" >}}
 
 “Tell me,” said Holmes—and I could see by his eyes that he was much excited—“was this a mere addition to the first or did it appear to be entirely separate?”
 
@@ -156,6 +168,8 @@ I confess that I was filled with curiosity, but I was aware that Holmes liked to
 
 But there was a delay in that answering telegram, and two days of impatience followed, during which Holmes pricked up his ears at every ring of the bell. On the evening of the second there came a letter from Hilton Cubitt. All was quiet with him, save that a long inscription had appeared that morning upon the pedestal of the sundial. He enclosed a copy of it, which is here reproduced:
 
+{{< illustration number=7 caption="" >}}
+
 Holmes bent over this grotesque frieze for some minutes, and then suddenly sprang to his feet with an exclamation of surprise and dismay. His face was haggard with anxiety.
 
 “We have let this affair go far enough,” said he. “Is there a train to North Walsham tonight?”
@@ -175,6 +189,8 @@ A look of annoyance passed over Holmes’s face.
 “Because Inspector Martin from Norwich has just passed through. But maybe you are the surgeons. She’s not dead—or wasn’t by last accounts. You may be in time to save her yet—though it be for the gallows.”
 
 Holmes’s brow was dark with anxiety.
+
+{{< illustration number=9 caption="‘I suppose that you are the detectives from London?’" >}}
 
 “We are going to Riding Thorpe Manor,” said he, “but we have heard nothing of what has passed there.”
 
@@ -286,6 +302,8 @@ A flowerbed extended up to the study window, and we all broke into an exclamatio
 
 The country inspector’s face had shown his intense amazement at the rapid and masterful progress of Holmes’s investigation. At first he had shown some disposition to assert his own position, but now he was overcome with admiration, and ready to follow without question wherever Holmes led.
 
+{{< illustration number=10 caption="He bent forward and picked up a little brazen cylinder." >}}
+
 “Whom do you suspect?” he asked.
 
 “I’ll go into that later. There are several points in this problem which I have not been able to explain to you yet. Now that I have got so far, I had best proceed on my own lines, and then clear the whole matter up once and for all.”
@@ -316,25 +334,25 @@ When the youth had been dispatched with the note, Sherlock Holmes gave his instr
 
 “I think that I can help you to pass an hour in an interesting and profitable manner,” said Holmes, drawing his chair up to the table, and spreading out in front of him the various papers upon which were recorded the antics of the dancing men. “As to you, friend Watson, I owe you every atonement for having allowed your natural curiosity to remain so long unsatisfied. To you, Inspector, the whole incident may appeal as a remarkable professional study. I must tell you, first of all, the interesting circumstances connected with the previous consultations which Mr. Hilton Cubitt has had with me in Baker Street.” He then shortly recapitulated the facts which have already been recorded. “I have here in front of me these singular productions, at which one might smile, had they not proved themselves to be the forerunners of so terrible a tragedy. I am fairly familiar with all forms of secret writings, and am myself the author of a trifling monograph upon the subject, in which I analyze one hundred and sixty separate ciphers, but I confess that this is entirely new to me. The object of those who invented the system has apparently been to conceal that these characters convey a message, and to give the idea that they are the mere random sketches of children.
 
-“Having once recognized, however, that the symbols stood for letters, and having applied the rules which guide us in all forms of secret writings, the solution was easy enough. The first message submitted to me was so short that it was impossible for me to do more than to say, with some confidence, that the symbol stood for E. As you are aware, E is the most common letter in the English alphabet, and it predominates to so marked an extent that even in a short sentence one would expect to find it most often. Out of fifteen symbols in the first message, four were the same, so it was reasonable to set this down as E. It is true that in some cases the figure was bearing a flag, and in some cases not, but it was probable, from the way in which the flags were distributed, that they were used to break the sentence up into words. I accepted this as a hypothesis, and noted that E was represented by .
+“Having once recognized, however, that the symbols stood for letters, and having applied the rules which guide us in all forms of secret writings, the solution was easy enough. The first message submitted to me was so short that it was impossible for me to do more than to say, with some confidence, that the symbol {{< inline-svg "the-dancing-men-letter-e" >}} stood for E. As you are aware, E is the most common letter in the English alphabet, and it predominates to so marked an extent that even in a short sentence one would expect to find it most often. Out of fifteen symbols in the first message, four were the same, so it was reasonable to set this down as E. It is true that in some cases the figure was bearing a flag, and in some cases not, but it was probable, from the way in which the flags were distributed, that they were used to break the sentence up into words. I accepted this as a hypothesis, and noted that E was represented by{{< inline-svg "the-dancing-men-letter-e" >}}.
 
-“But now came the real difficulty of the inquiry. The order of the English letters after E is by no means well marked, and any preponderance which may be shown in an average of a printed sheet may be reversed in a single short sentence. Speaking roughly, T, A, O, I, N, S, H, R, D, and L are the numerical order in which letters occur, but T, A, O, and I are very nearly abreast of each other, and it would be an endless task to try each combination until a meaning was arrived at. I therefore waited for fresh material. In my second interview with Mr. Hilton Cubitt he was able to give me two other short sentences and one message, which appeared—since there was no flag—to be a single word. Here are the symbols. Now, in the single word I have already got the two E’s coming second and fourth in a word of five letters. It might be ‘sever,’ or ‘lever,’ or ‘never.’ There can be no question that the latter as a reply to an appeal is far the most probable, and the circumstances pointed to its being a reply written by the lady. Accepting it as correct, we are now able to say that the symbols stand respectively for N, V, and R.
+“But now came the real difficulty of the inquiry. The order of the English letters after E is by no means well marked, and any preponderance which may be shown in an average of a printed sheet may be reversed in a single short sentence. Speaking roughly, T, A, O, I, N, S, H, R, D, and L are the numerical order in which letters occur, but T, A, O, and I are very nearly abreast of each other, and it would be an endless task to try each combination until a meaning was arrived at. I therefore waited for fresh material. In my second interview with Mr. Hilton Cubitt he was able to give me two other short sentences and one message, which appeared—since there was no flag—to be a single word. Here are the symbols. Now, in the single word I have already got the two E’s coming second and fourth in a word of five letters. It might be ‘sever,’ or ‘lever,’ or ‘never.’ There can be no question that the latter as a reply to an appeal is far the most probable, and the circumstances pointed to its being a reply written by the lady. Accepting it as correct, we are now able to say that the symbols {{< inline-svg "the-dancing-men-letter-n" >}}{{< inline-svg "the-dancing-men-letter-v" >}}{{< inline-svg "the-dancing-men-letter-r" >}} stand respectively for N, V, and R.
 
 “Even now I was in considerable difficulty, but a happy thought put me in possession of several other letters. It occurred to me that if these appeals came, as I expected, from someone who had been intimate with the lady in her early life, a combination which contained two E’s with three letters between might very well stand for the name ‘Elsie.’ On examination I found that such a combination formed the termination of the message which was three times repeated. It was certainly some appeal to ‘Elsie.’ In this way I had got my L, S, and I. But what appeal could it be? There were only four letters in the word which preceded ‘Elsie,’ and it ended in E. Surely the word must be ‘Come.’ I tried all other four letters ending in E, but could find none to fit the case. So now I was in possession of C, O, and M, and I was in a position to attack the first message once more, dividing it into words and putting dots for each symbol which was still unknown. So treated, it worked out in this fashion:
 
-.m .ere ..e sl.ne.
+> .m .ere ..e sl.ne.
 
 “Now the first letter can only be A, which is a most useful discovery, since it occurs no fewer than three times in this short sentence, and the H is also apparent in the second word. Now it becomes:
 
-am here a.e slane.
+> am here a.e slane.
 
 Or, filling in the obvious vacancies in the name:
 
-am here Abe Slaney.
+> am here Abe Slaney.
 
 I had so many letters now that I could proceed with considerable confidence to the second message, which worked out in this fashion:
 
-a. elri.es.
+> a. elri.es.
 
 Here I could only make sense by putting T and G for the missing letters, and supposing that the name was that of some house or inn at which the writer was staying.”
 
@@ -344,7 +362,7 @@ Inspector Martin and I had listened with the utmost interest to the full and cle
 
 “I had every reason to suppose that this Abe Slaney was an American, since Abe is an American contraction, and since a letter from America had been the starting-point of all the trouble. I had also every cause to think that there was some criminal secret in the matter. The lady’s allusions to her past, and her refusal to take her husband into her confidence, both pointed in that direction. I therefore cabled to my friend, Wilson Hargreave, of the New York Police Bureau, who has more than once made use of my knowledge of London crime. I asked him whether the name of Abe Slaney was known to him. Here is his reply: ‘The most dangerous crook in Chicago.’ On the very evening upon which I had his answer, Hilton Cubitt sent me the last message from Slaney. Working with known letters, it took this form:
 
-Elsie .re.are to meet thy Go.
+> Elsie .re.are to meet thy Go.
 
 The addition of a P and a D completed a message which showed me that the rascal was proceeding from persuasion to threats, and my knowledge of the crooks of Chicago prepared me to find that he might very rapidly put his words into action. I at once came to Norfolk with my friend and colleague, Dr. Watson, but, unhappily, only in time to find that the worst had already occurred.”
 
@@ -374,6 +392,8 @@ A man was striding up the path which led to the door. He was a tall, handsome, s
 
 We waited in silence for a minute—one of those minutes which one can never forget. Then the door opened and the man stepped in. In an instant Holmes clapped a pistol to his head, and Martin slipped the handcuffs over his wrists. It was all done so swiftly and deftly that the fellow was helpless before he knew that he was attacked. He glared from one to the other of us with a pair of blazing black eyes. Then he burst into a bitter laugh.
 
+{{< illustration number=11 caption="Holmes clapped a pistol to his head and Martin slipped the handcuffs over his wrists." >}}
+
 “Well, gentlemen, you have the drop on me this time. I seem to have knocked up against something hard. But I came here in answer to a letter from Mrs. Hilton Cubitt. Don’t tell me that she is in this? Don’t tell me that she helped to set a trap for me?”
 
 “Mrs. Hilton Cubitt was seriously injured, and is at death’s door.”
@@ -383,6 +403,8 @@ The man gave a hoarse cry of grief, which rang through the house.
 “You’re crazy!” he cried, fiercely. “It was he that was hurt, not she. Who would have hurt little Elsie? I may have threatened her—God forgive me!—but I would not have touched a hair of her pretty head. Take it back—you! Say that she is not hurt!”
 
 “She was found badly wounded, by the side of her dead husband.”
+
+{{< illustration number=12 caption="He buried his face in his manacled hands." >}}
 
 He sank with a deep groan on the settee and buried his face in his manacled hands. For five minutes he was silent. Then he raised his face once more, and spoke with the cold composure of despair.
 
@@ -421,6 +443,8 @@ We stood at the window and watched the cab drive away. As I turned back, my eye 
 “See if you can read it, Watson,” said he, with a smile.
 
 It contained no word, but this little line of dancing men:
+
+{{< illustration number=8 caption="" >}}
 
 “If you use the code which I have explained,” said Holmes, “you will find that it simply means ‘Come here at once.’ I was convinced that it was an invitation which he would not refuse, since he could never imagine that it could come from anyone but the lady. And so, my dear Watson, we have ended by turning the dancing men to good when they have so often been the agents of evil, and I think that I have fulfilled my promise of giving you something unusual for your notebook. Three-forty is our train, and I fancy we should be back in Baker Street for dinner.”
 
