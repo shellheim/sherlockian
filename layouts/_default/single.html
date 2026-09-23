@@ -37,7 +37,7 @@
     {{- end -}}
 
     {{- with $img -}}
-      {{- $og := .Resize "1400x jpg q85" -}}
+      {{- $og := .Fill "1200x628 jpg q85" -}}
       <meta property="og:image" content="{{ $og.Permalink }}" />
       <meta name="twitter:image" content="{{ $og.Permalink }}" />
     {{- end -}}

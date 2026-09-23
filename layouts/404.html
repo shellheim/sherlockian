@@ -32,7 +32,7 @@
     content="Whatever page you were pursuing, reader, it appears to have left no trail here. Perhaps it was never filed or perhaps it awaits us elsewhere in the canon." />
 
   {{ with resources.Get "images/illustrations/the-man-with-the-twisted-lip.jpg" -}}
-    {{- $ogImage := .Resize "500x jpg q85" -}}
+    {{- $ogImage := .Fill "1200x628 jpg q85" -}}
     <meta property="og:image" content="{{ $ogImage.Permalink }}" />
     <meta name="twitter:image" content="{{ $ogImage.Permalink }}" />
   {{- end -}}
