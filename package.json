@@ -1,0 +1,11 @@
+{
+       "devDependencies": {
+              "@hugomods/prettier-config": "^0.2.0"
+       },
+       "prettier": "@hugomods/prettier-config",
+       "scripts": {
+              "lint:prettier": "prettier . --check",
+              "lint:prettier:fix": "prettier . -w"
+       },
+       "type": "module"
+}

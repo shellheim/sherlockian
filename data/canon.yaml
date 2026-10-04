@@ -1,0 +1,23 @@
+# Order storage to display at the bottom of single.html
+# If you're done with `The Sign of Four`, you can be directed to either `The Hound of the Baskervilles` or `The Adventures of Sherlock Holmes` depening on which sorting order you picked
+chronological:
+  - novels/study-in-scarlet
+  - novels/sign-of-four
+  - stories/adventures
+  - stories/memoirs
+  - novels/hound-of-the-baskervilles
+  - stories/return
+  - novels/valley-of-fear
+  - stories/his-last-bow
+  - stories/case-book
+
+grouped:
+  - novels/study-in-scarlet
+  - novels/sign-of-four
+  - novels/hound-of-the-baskervilles
+  - novels/valley-of-fear
+  - stories/adventures
+  - stories/memoirs
+  - stories/return
+  - stories/his-last-bow
+  - stories/case-book

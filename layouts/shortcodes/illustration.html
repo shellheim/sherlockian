@@ -1,0 +1,6 @@
+{{ partial "illustration.html" (dict
+  "page" .Page
+  "caption" (.Get "caption")
+  "number" (.Get "number" | default 1 | int)
+  )
+}}
