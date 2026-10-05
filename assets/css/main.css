@@ -34,17 +34,18 @@ Baskervville — body face, long-form reading, captions (italic)
 
 @font-face {
   font-family: 'Dropcap-Light';
-  src: url('/fonts/Dropcap.woff2') format('woff2');
+  src: url('/fonts/Dropcap-light.subset.woff2') format('woff2');
   font-style: normal;
   font-weight: 900;
-  font-display: swap;
+  font-display: block;
 }
+
 @font-face {
   font-family: 'Dropcap-Dark';
-  src: url('/fonts/Dropcap-light.woff2') format('woff2');
+  src: url('/fonts/Dropcap-dark.subset.woff2') format('woff2');
   font-style: normal;
   font-weight: 900;
-  font-display: swap;
+  font-display: block;
 }
 
 :root {
@@ -90,6 +91,8 @@ Baskervville — body face, long-form reading, captions (italic)
 *,
 *::before,
 *::after {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
@@ -110,7 +113,6 @@ html {
 }
 
 body {
-  margin: 0;
   background-color: var(--bg);
   color: var(--fg);
   font-family: 'Baskervville', Georgia, 'Times New Roman', serif;
@@ -189,6 +191,9 @@ blockquote {
   hr {
     display: none;
   }
+  ol {
+    padding-left: 2.5rem;
+  }
 
   li {
     color: var(--fg-dim);
@@ -222,6 +227,11 @@ blockquote {
   gap: 0.85rem;
   max-width: 100%;
   margin-block: 1.5rem;
+  /* Chrome, Edge, Safari and anything that isn't Firefox */
+  @supports not (-moz-appearance: none) {
+    margin-block-start: 1.5rem;
+    margin-block-end: 3rem;
+  }
 
   span {
     flex: 1;
@@ -589,7 +599,7 @@ blockquote {
     margin: 0 0 1.4rem;
   }
 
-  > p:first-of-type::first-letter {
+  .dropcap {
     font-family: var(--font-dropcap), 'Cinzel', serif;
     font-size: clamp(9rem, 12vw, 14rem);
     font-weight: 600;
@@ -597,6 +607,20 @@ blockquote {
     float: left;
     line-height: 0.8;
     padding: 0.1rem 0.5rem 0 0;
+  }
+
+  .dropcap__quote {
+    font-family: 'Baskervville', Georgia, serif;
+    font-size: 0.12em;
+    color: var(--fg);
+    font-weight: 400;
+    line-height: 1;
+    vertical-align: top;
+    margin-right: 0.15em;
+
+    &:empty {
+      display: none;
+    }
   }
 }
 
